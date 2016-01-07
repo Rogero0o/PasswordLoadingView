@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.text.InputType;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
@@ -16,9 +17,12 @@ public class PsdLoadingView extends RelativeLayout {
     private Context mContext;
     private AttributeSet mAttrs;
 
+    private MetaballView metaball;
+
 
     public PsdLoadingView(Context context) {
         super(context);
+        init();
     }
 
 
@@ -58,5 +62,15 @@ public class PsdLoadingView extends RelativeLayout {
         ed.setTextSize(a.getDimension(R.styleable.psdloadView_textSize, dips));
         a.recycle();
         this.addView(ed);
+
+        metaball = new MetaballView(mContext);
+        metaball.setVisibility(View.GONE);
+        metaball.setLayoutParams(lp);
+        this.addView(metaball);
+    }
+
+
+    public void startLoading() {
+        metaball.setVisibility(View.VISIBLE);
     }
 }

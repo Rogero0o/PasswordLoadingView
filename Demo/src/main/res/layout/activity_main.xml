@@ -22,11 +22,19 @@
             android:layout_height="wrap_content"/>
 
         <com.roger.psdloadingview.library.PsdLoadingView
+            android:id="@+id/psdloadingview"
             psd:hint="请输入密码"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <com.roger.psdloadingview.library.PsdLoadingView2
+            android:id="@+id/psdloadingview2"
+            android:hint="请输入密码"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
         <Button
+            android:id="@+id/button"
             android:layout_gravity="center_horizontal"
             android:text="登陆"
             android:layout_width="wrap_content"
