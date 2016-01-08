@@ -1,23 +1,20 @@
 package com.roger.psdloadingview.library;
 
 import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.text.InputType;
+import android.graphics.Canvas;
+import android.text.Editable;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
+import com.roger.psdloadingview.library.animate.BaseAnimate;
+import com.roger.psdloadingview.library.animate.IAnimate;
+import com.roger.psdloadingview.library.animate.TranslationXAnimate;
 
 /**
  * Created by Administrator on 2016/1/5.
  */
-public class PsdLoadingView extends RelativeLayout {
+public class PsdLoadingView extends EditText {
 
-    private Context mContext;
-    private AttributeSet mAttrs;
-
-    private MetaballView metaball;
+    private IAnimate mIAnimate;
 
 
     public PsdLoadingView(Context context) {
@@ -28,49 +25,50 @@ public class PsdLoadingView extends RelativeLayout {
 
     public PsdLoadingView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
-        mAttrs = attrs;
         init();
     }
 
 
     public PsdLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
-        mAttrs = attrs;
         init();
     }
 
 
     private void init() {
-        EditText ed = new EditText(mContext);
-        ed.setInputType(InputType.TYPE_CLASS_TEXT |
-                InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        LayoutParams lp = new LayoutParams(mContext, mAttrs);
-        ed.setLayoutParams(lp);
-
-        TypedArray a = mContext.obtainStyledAttributes(mAttrs,
-                R.styleable.psdloadView);
-
-        ed.setText(a.getString(R.styleable.psdloadView_text));
-        ed.setHint(a.getString(R.styleable.psdloadView_hint));
-        ed.setTextColor(
-                a.getColor(R.styleable.psdloadView_textColor, Color.BLACK));
-
-        float scale = getResources().getDisplayMetrics().density;
-        float dips = ed.getTextSize() / scale;
-        ed.setTextSize(a.getDimension(R.styleable.psdloadView_textSize, dips));
-        a.recycle();
-        this.addView(ed);
-
-        metaball = new MetaballView(mContext);
-        metaball.setVisibility(View.GONE);
-        metaball.setLayoutParams(lp);
-        this.addView(metaball);
+        mIAnimate = new TranslationXAnimate();
+        mIAnimate.init(this);
     }
 
 
     public void startLoading() {
-        metaball.setVisibility(View.VISIBLE);
+        mIAnimate.startLoading();
+    }
+
+
+    public void stopLoading() {
+        mIAnimate.stopLoading();
+    }
+
+
+    public void setDuration(int duration) {
+        mIAnimate.setDuration(duration);
+    }
+
+
+    public Editable getTextDuringLoading() {
+        BaseAnimate baseAnimate = (BaseAnimate) mIAnimate;
+        if (baseAnimate.isLoading) {
+            return baseAnimate.text;
+        }
+        else {
+            return super.getText();
+        }
+    }
+
+
+    @Override protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        mIAnimate.onDraw(canvas);
     }
 }
