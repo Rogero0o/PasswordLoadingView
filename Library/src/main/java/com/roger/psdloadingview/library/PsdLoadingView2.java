@@ -20,8 +20,6 @@ public class PsdLoadingView2 extends EditText {
 
     private static char DOT = '\u2022';
     protected Paint mPaint;
-    private Context mContext;
-    private AttributeSet mAttrs;
 
     private int textLength;
     private int startY = 0;
@@ -47,16 +45,12 @@ public class PsdLoadingView2 extends EditText {
 
     public PsdLoadingView2(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mContext = context;
-        mAttrs = attrs;
         init();
     }
 
 
     public PsdLoadingView2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mContext = context;
-        mAttrs = attrs;
         init();
     }
 
