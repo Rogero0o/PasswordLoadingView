@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.widget.EditText;
 import com.roger.psdloadingview.library.animate.BaseAnimate;
 import com.roger.psdloadingview.library.animate.IAnimate;
-import com.roger.psdloadingview.library.animate.TranslationXAnimate;
+import com.roger.psdloadingview.library.animate.TranslationX2Animate;
 
 /**
  * Created by Administrator on 2016/1/5.
@@ -36,7 +36,7 @@ public class PsdLoadingView extends EditText {
 
 
     private void init() {
-        mIAnimate = new TranslationXAnimate();
+        mIAnimate = new TranslationX2Animate();
         mIAnimate.init(this);
     }
 
