@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class TranslationX2Animate extends BaseAnimate {
 
     ArrayList<Float> movexArray;
+    boolean isBegining;
+    boolean isEnding;
 
 
     @Override public void init(PsdLoadingView mPsdLoadingView) {
@@ -17,9 +19,27 @@ public class TranslationX2Animate extends BaseAnimate {
     }
 
 
+    @Override public void startLoading() {
+        super.startLoading();
+        isBegining = true;
+        isEnding = false;
+    }
+
+
+    @Override public void stopLoading() {
+        super.stopLoading();
+        movexArray.clear();
+        isBegining = false;
+        isEnding = true;
+    }
+
+
     @Override public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (!isStop) {
+            if (progress > 0.999f) {
+                isBegining = false;
+            }
             if (movexArray == null || movexArray.size() < textLength) {
                 movexArray = new ArrayList<Float>(textLength);
                 for (int i = 0; i < textLength; i++) {
@@ -27,10 +47,16 @@ public class TranslationX2Animate extends BaseAnimate {
                 }
             }
             for (int i = 0; i < textLength; i++) {
-                if ((float) i < progress * (float) textLength &&
-                        progress * (float) textLength < ((float) i + 1f)) {
-                    movexArray.set(i, progress * (mPsdLoadingView.getWidth() -
-                            (textLength + 2) * distance));
+                if (isEnding || isBegining ||
+                        ((float) i < progress * (float) textLength &&
+                                progress * (float) textLength <
+                                        ((float) i + 1f))) {
+                    float temp = progress * (mPsdLoadingView.getWidth() -
+                            (textLength + 2) * distance);
+                    float maxtemp = ((i + 1) / (float) textLength) *
+                            (mPsdLoadingView.getWidth() -
+                                    (textLength + 2) * distance);
+                    movexArray.set(i, Math.min(temp, maxtemp));
                 }
                 canvas.drawText(DOT + "", 0, 1,
                         movexArray.get(i) + (i + 1) * distance, startY, mPaint);

@@ -14,30 +14,30 @@ import com.roger.psdloadingview.library.animate.TranslationX2Animate;
  */
 public class PsdLoadingView extends EditText {
 
-    private IAnimate mIAnimate;
+    private IAnimate mIAnimate = new TranslationX2Animate();
 
 
     public PsdLoadingView(Context context) {
         super(context);
-        init();
+        init(mIAnimate);
     }
 
 
     public PsdLoadingView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(mIAnimate);
     }
 
 
     public PsdLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(mIAnimate);
     }
 
 
-    private void init() {
-        mIAnimate = new TranslationX2Animate();
-        mIAnimate.init(this);
+    public void init(IAnimate mIAnimate) {
+        this.mIAnimate = mIAnimate;
+        this.mIAnimate.init(this);
     }
 
 

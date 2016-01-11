@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animate">
+        <item>TranslationX</item>
+        <item>TranslationX2</item>
+    </string-array>
+</resources>
