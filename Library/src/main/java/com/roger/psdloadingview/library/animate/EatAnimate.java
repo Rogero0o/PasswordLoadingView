@@ -17,16 +17,13 @@ public class EatAnimate extends BaseAnimate {
     private float eyeProgress;
     private boolean isBegining = false;
     private boolean isLeftTurn = true;
+    private boolean isShowamaze = false;
+    private int amazeTimes = 0;
 
     float radius, left, right, top, bottom, centerX, centerY, eyeX, eyeY;
     float startAngle, sweepAngle;
 
-    private Handler mHandler = new Handler() {
-        @Override public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            valueAnimator.resume();
-        }
-    };
+    private Handler mHandler;
 
 
     @Override public void init(PsdLoadingView mPsdLoadingView) {
@@ -35,6 +32,33 @@ public class EatAnimate extends BaseAnimate {
         mEyePaint.setColor(Color.WHITE);
         mEyePaint.setStyle(Paint.Style.FILL);
         setDuration(duration * 6);
+
+        final PsdLoadingView psdLoadingView = mPsdLoadingView;
+        mHandler = new Handler() {
+            @Override public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                amazeTimes++;
+                if (amazeTimes % 2 == 0) {
+                    isShowamaze = true;
+                }
+                else {
+                    isShowamaze = false;
+                }
+                psdLoadingView.invalidate();
+                if (amazeTimes >= 5) {
+                    amazeTimes = 0;
+                    valueAnimator.resume();
+                }
+                else {
+                    if (amazeTimes == 4) {
+                        mHandler.sendEmptyMessageDelayed(0, 300);
+                    }
+                    else {
+                        mHandler.sendEmptyMessageDelayed(0, 100);
+                    }
+                }
+            }
+        };
     }
 
 
@@ -80,25 +104,29 @@ public class EatAnimate extends BaseAnimate {
 
             drawEater(canvas);
 
-            if (distance * 3 >= centerX && isBegining) {
+            if (distance * 2 >= centerX && isBegining) {
                 isBegining = false;
                 valueAnimator.pause();
-                mHandler.sendEmptyMessageDelayed(0, 500);
+                isShowamaze = true;
+                mHandler.sendEmptyMessageDelayed(0, 100);
+            }
+
+            if (isShowamaze) {
+                drawAmazed(canvas);
             }
 
             if (isBegining) {
                 for (int i = 0; i < textLength; i++) {
-                    float moveX = (i + 1) * distance;
+                    float moveX = (i + 0.5f) * distance;
                     if (moveX < centerX) {
                         canvas.drawText(DOT + "", 0, 1, moveX, startY, mPaint);
                     }
                 }
             }
             else {
-                drawAmazed(canvas);
                 float moveX;
                 if (isLeftTurn) {
-                    moveX = centerX - radius - distance / 2.0f;
+                    moveX = centerX - radius - distance * 1.0f;
                 }
                 else {
                     moveX = centerX + radius;
@@ -132,7 +160,7 @@ public class EatAnimate extends BaseAnimate {
 
     private void drawAmazed(Canvas canvas) {
 
-        float amazedX = centerX - radius - distance / 2.0f;
+        float amazedX = centerX - radius - distance * 0.75f;
         canvas.drawCircle(amazedX, centerY - radius, radius / 7.0f, mPaint);
         canvas.drawCircle(amazedX + radius / 2.0f, centerY - radius / 2.0f,
                 radius / 7.0f, mPaint);
