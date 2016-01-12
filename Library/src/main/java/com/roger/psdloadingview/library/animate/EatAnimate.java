@@ -13,8 +13,11 @@ public class EatAnimate extends BaseAnimate {
 
     private Paint mEyePaint;
     private float eyeProgress;
-    private boolean isBegining;
+    private boolean isBegining = false;
     private boolean isLeftTurn = true;
+
+    float radius, left, right, top, bottom, centerX, centerY, eyeX, eyeY;
+    float startAngle, sweepAngle;
 
 
     @Override public void init(PsdLoadingView mPsdLoadingView) {
@@ -92,10 +95,6 @@ public class EatAnimate extends BaseAnimate {
             }
         }
     }
-
-
-    float radius, left, right, top, bottom, centerX, centerY, eyeX, eyeY;
-    float startAngle, sweepAngle;
 
 
     private void drawEater(Canvas canvas) {
