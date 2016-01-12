@@ -26,9 +26,10 @@ public class BaseAnimate implements IAnimate {
     public Editable text;
     protected CharSequence hint;
     public boolean isLoading;
-    protected boolean isStop;
+    protected boolean isStop = true;
 
     protected int duration = 500;
+    ValueAnimator valueAnimator;
 
 
     @Override public void setDuration(int duration) {
@@ -79,7 +80,7 @@ public class BaseAnimate implements IAnimate {
                     public void onAnimationUpdate(ValueAnimator animation) {
                         progress = (float) animation.getAnimatedValue();
                         mPsdLoadingView.invalidate();
-                        if (isLoading == false && progress <= 0.001f) {
+                        if (whenStop()) {
                             valueAnimator.cancel();
                             isStop = true;
                             mPsdLoadingView.setHint(hint);
@@ -100,5 +101,10 @@ public class BaseAnimate implements IAnimate {
 
 
     @Override public void onDraw(Canvas canvas) {
+    }
+
+
+    protected boolean whenStop() {
+        return (isLoading == false && progress <= 0.001f);
     }
 }

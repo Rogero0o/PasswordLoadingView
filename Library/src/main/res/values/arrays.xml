@@ -3,5 +3,6 @@
     <string-array name="animate">
         <item>TranslationX</item>
         <item>TranslationX2</item>
+        <item>EatAnimate</item>
     </string-array>
 </resources>

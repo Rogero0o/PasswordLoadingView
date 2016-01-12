@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 import com.roger.psdloadingview.library.PsdLoadingView;
+import com.roger.psdloadingview.library.animate.EatAnimate;
 import com.roger.psdloadingview.library.animate.IAnimate;
 import com.roger.psdloadingview.library.animate.TranslationX2Animate;
 import com.roger.psdloadingview.library.animate.TranslationXAnimate;
@@ -48,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case 1:
                                 iAnimate = new TranslationX2Animate();
+                                break;
+                            case 2:
+                                iAnimate = new EatAnimate();
                                 break;
                             default:
                                 iAnimate = new TranslationXAnimate();
