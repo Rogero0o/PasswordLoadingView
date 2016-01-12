@@ -69,8 +69,7 @@ public class BaseAnimate implements IAnimate {
         mPsdLoadingView.setText("");
         mPsdLoadingView.setHint("");
         mPsdLoadingView.setCursorVisible(false);
-        final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1)
-                                                         .setDuration(duration);
+        valueAnimator = ValueAnimator.ofFloat(0, 1).setDuration(duration);
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         valueAnimator.setRepeatCount(Animation.INFINITE);
         valueAnimator.setRepeatMode(ValueAnimator.REVERSE);

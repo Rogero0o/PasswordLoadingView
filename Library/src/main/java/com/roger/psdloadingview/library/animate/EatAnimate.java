@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.os.Handler;
+import android.os.Message;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import com.roger.psdloadingview.library.PsdLoadingView;
@@ -18,6 +20,13 @@ public class EatAnimate extends BaseAnimate {
 
     float radius, left, right, top, bottom, centerX, centerY, eyeX, eyeY;
     float startAngle, sweepAngle;
+
+    private Handler mHandler = new Handler() {
+        @Override public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            valueAnimator.resume();
+        }
+    };
 
 
     @Override public void init(PsdLoadingView mPsdLoadingView) {
@@ -69,11 +78,13 @@ public class EatAnimate extends BaseAnimate {
                 isLeftTurn = true;
             }
 
-            if (progress > 0.999f) {
-                isBegining = false;
-            }
-
             drawEater(canvas);
+
+            if (distance * 3 >= centerX && isBegining) {
+                isBegining = false;
+                valueAnimator.pause();
+                mHandler.sendEmptyMessageDelayed(0, 500);
+            }
 
             if (isBegining) {
                 for (int i = 0; i < textLength; i++) {
@@ -84,6 +95,7 @@ public class EatAnimate extends BaseAnimate {
                 }
             }
             else {
+                drawAmazed(canvas);
                 float moveX;
                 if (isLeftTurn) {
                     moveX = centerX - radius - distance / 2.0f;
@@ -115,6 +127,17 @@ public class EatAnimate extends BaseAnimate {
         }
         canvas.drawArc(oval2, startAngle, sweepAngle, true, mPaint);
         canvas.drawCircle(eyeX, eyeY, radius / 5.0f, mEyePaint);
+    }
+
+
+    private void drawAmazed(Canvas canvas) {
+
+        float amazedX = centerX - radius - distance / 2.0f;
+        canvas.drawCircle(amazedX, centerY - radius, radius / 7.0f, mPaint);
+        canvas.drawCircle(amazedX + radius / 2.0f, centerY - radius / 2.0f,
+                radius / 7.0f, mPaint);
+        canvas.drawCircle(amazedX - radius / 2.0f, centerY - radius / 2.0f,
+                radius / 7.0f, mPaint);
     }
 
 
