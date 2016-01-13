@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.text.Editable;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.EditText;
 import com.roger.psdloadingview.library.animate.BaseAnimate;
 import com.roger.psdloadingview.library.animate.IAnimate;
@@ -70,5 +71,18 @@ public class PsdLoadingView extends EditText {
     @Override protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         mIAnimate.onDraw(canvas);
+    }
+
+
+    @Override
+    protected void onVisibilityChanged(View changedView, int visibility) {
+        super.onVisibilityChanged(changedView, visibility);
+
+        if (visibility == GONE || visibility == INVISIBLE) {
+            mIAnimate.onVisibilityChanged(false);
+        }
+        else {
+            mIAnimate.onVisibilityChanged(true);
+        }
     }
 }

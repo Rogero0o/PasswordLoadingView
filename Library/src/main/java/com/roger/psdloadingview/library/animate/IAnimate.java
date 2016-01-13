@@ -16,4 +16,6 @@ public interface IAnimate {
     void setDuration(int duration);
 
     void onDraw(Canvas canvas);
+
+    void onVisibilityChanged(boolean isVisibiable);
 }

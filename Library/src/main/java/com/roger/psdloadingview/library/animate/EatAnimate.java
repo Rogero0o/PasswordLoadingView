@@ -1,5 +1,6 @@
 package com.roger.psdloadingview.library.animate;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -70,6 +71,27 @@ public class EatAnimate extends BaseAnimate {
         top = centerY - radius;
         bottom = centerY + radius;
 
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override public void onAnimationStart(Animator animation) {
+
+            }
+
+
+            @Override public void onAnimationEnd(Animator animation) {
+
+            }
+
+
+            @Override public void onAnimationCancel(Animator animation) {
+
+            }
+
+
+            @Override public void onAnimationRepeat(Animator animation) {
+                isLeftTurn = !isLeftTurn;
+            }
+        });
+
         ValueAnimator eyeAnimator = ValueAnimator.ofFloat(0, 1)
                                                  .setDuration(100L);
         eyeAnimator.setInterpolator(new AccelerateInterpolator());
@@ -94,13 +116,6 @@ public class EatAnimate extends BaseAnimate {
     @Override public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (!isStop) {
-
-            if (progress > 0.999f) {
-                isLeftTurn = false;
-            }
-            else if (progress < 0.001f) {
-                isLeftTurn = true;
-            }
 
             drawEater(canvas);
 
