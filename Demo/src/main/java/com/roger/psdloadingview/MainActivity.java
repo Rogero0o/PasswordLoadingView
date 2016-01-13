@@ -23,14 +23,11 @@ public class MainActivity extends AppCompatActivity {
                 R.id.psdloadingview);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        // 建立数据源
         String[] mItems = getResources().getStringArray(R.array.animate);
-        // 建立Adapter并且绑定数据源
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, mItems);
         adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item);
-        //绑定 Adapter到控件
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
@@ -62,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
-                        // Another interface callback
                     }
                 });
 
