@@ -7,6 +7,37 @@ Provide an animation when finished the password<br>
 
 ![](https://github.com/Rogero0o/PasswordLoadingView/raw/master/Demo/1.gif)
 
+##  Usage
+
+### Jcenter
+
+gradle
+```
+compile 'com.roger.psdloadingview.library:Library:1.0.1'
+```
+
+### Config in xml
+
+```xml
+        <com.roger.psdloadingview.library.PsdLoadingView
+            android:id="@+id/psdloadingview"
+            android:hint="Please input password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+```
+
+### and init in java code
+
+```java
+ 	PsdLoadingView psd = (PsdLoadingView) findViewById(R.id.psdloadingview);
+ 	psd.init(new TranslationXAnimate());
+ 	psd.startLoading();
+```
+
+### Warning
+
+If you have to getText during the animation , you should use psd.getTextDuringLoading() instead of psd.getText().
+
 ## About me
 
 A small guy  in mainland FUJIAN China.
