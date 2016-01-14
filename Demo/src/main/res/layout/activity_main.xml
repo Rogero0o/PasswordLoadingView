@@ -24,7 +24,7 @@
 
         <com.roger.psdloadingview.library.PsdLoadingView
             android:id="@+id/psdloadingview"
-            android:hint="Please input password"
+            android:hint="请输入密码"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
