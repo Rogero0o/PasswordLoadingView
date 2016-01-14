@@ -6,13 +6,12 @@ import android.graphics.Paint;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import com.roger.psdloadingview.library.PsdLoadingView;
 
 /**
- * Created by Administrator on 2016/1/8.
+ * Created by Roger on 2016/1/8.
  */
 public class BaseAnimate implements IAnimate {
 
@@ -35,6 +34,11 @@ public class BaseAnimate implements IAnimate {
 
     @Override public void setDuration(int duration) {
         this.duration = duration;
+    }
+
+
+    @Override public boolean isLoading() {
+        return isLoading;
     }
 
 
@@ -105,7 +109,6 @@ public class BaseAnimate implements IAnimate {
 
 
     @Override public void onVisibilityChanged(boolean isVisibiable) {
-        Log.i("Tag", "isVisibiable:" + isVisibiable);
         if (!isLoading) {
             return;
         }

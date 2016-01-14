@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import com.roger.psdloadingview.library.PsdLoadingView;
 
 /**
- * Created by Administrator on 2016/1/8.
+ * Created by Roger on 2016/1/8.
  */
 public interface IAnimate {
     void init(PsdLoadingView mPsdLoadingView);
@@ -18,4 +18,6 @@ public interface IAnimate {
     void onDraw(Canvas canvas);
 
     void onVisibilityChanged(boolean isVisibiable);
+
+    boolean isLoading();
 }

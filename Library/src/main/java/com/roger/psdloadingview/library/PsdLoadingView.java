@@ -11,7 +11,7 @@ import com.roger.psdloadingview.library.animate.IAnimate;
 import com.roger.psdloadingview.library.animate.TranslationX2Animate;
 
 /**
- * Created by Administrator on 2016/1/5.
+ * Created by Roger on 2016/1/5.
  */
 public class PsdLoadingView extends EditText {
 
@@ -37,12 +37,18 @@ public class PsdLoadingView extends EditText {
 
 
     public void init(IAnimate mIAnimate) {
+        if (this.mIAnimate.isLoading()) {
+            return;
+        }
         this.mIAnimate = mIAnimate;
         this.mIAnimate.init(this);
     }
 
 
     public void startLoading() {
+        if (this.mIAnimate.isLoading()) {
+            return;
+        }
         mIAnimate.startLoading();
     }
 

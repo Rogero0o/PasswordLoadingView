@@ -19,13 +19,13 @@
 
         <EditText
             android:hint="请输入账号"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <com.roger.psdloadingview.library.PsdLoadingView
             android:id="@+id/psdloadingview"
-            android:hint="请输入密码"
-            android:layout_width="wrap_content"
+            android:hint="Please input password"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Spinner
@@ -38,14 +38,14 @@
             android:layout_marginTop="20dp"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal"
-            android:text="登陆"
+            android:text="Begin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/success"
             android:layout_gravity="center_horizontal"
-            android:text="结束"
+            android:text="End"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>

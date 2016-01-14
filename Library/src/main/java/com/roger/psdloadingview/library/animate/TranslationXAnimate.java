@@ -3,7 +3,7 @@ package com.roger.psdloadingview.library.animate;
 import android.graphics.Canvas;
 
 /**
- * Created by Administrator on 2016/1/8.
+ * Created by Roger on 2016/1/8.
  */
 public class TranslationXAnimate extends BaseAnimate {
     @Override public void onDraw(Canvas canvas) {

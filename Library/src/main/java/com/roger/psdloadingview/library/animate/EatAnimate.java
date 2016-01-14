@@ -64,6 +64,7 @@ public class EatAnimate extends BaseAnimate {
 
 
     @Override public void startLoading() {
+        isLeftTurn = true;
         super.startLoading();
         isBegining = true;
         radius = mPsdLoadingView.getHeight() / 8.0f;

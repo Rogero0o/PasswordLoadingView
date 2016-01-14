@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 import com.roger.psdloadingview.library.PsdLoadingView;
 import com.roger.psdloadingview.library.animate.EatAnimate;
 import com.roger.psdloadingview.library.animate.IAnimate;
@@ -14,6 +13,8 @@ import com.roger.psdloadingview.library.animate.TranslationX2Animate;
 import com.roger.psdloadingview.library.animate.TranslationXAnimate;
 
 public class MainActivity extends AppCompatActivity {
+    Spinner spinner;
+
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         final PsdLoadingView psd = (PsdLoadingView) findViewById(
                 R.id.psdloadingview);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
         String[] mItems = getResources().getStringArray(R.array.animate);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, mItems);
@@ -33,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-
-                        String[] languages = getResources().getStringArray(
-                                R.array.animate);
-                        Toast.makeText(MainActivity.this,
-                                "你点击的是:" + languages[pos], Toast.LENGTH_SHORT)
-                             .show();
                         IAnimate iAnimate;
                         switch (pos) {
                             case 0:
