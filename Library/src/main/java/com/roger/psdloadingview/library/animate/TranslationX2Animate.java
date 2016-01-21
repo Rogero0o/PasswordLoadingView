@@ -58,7 +58,7 @@ public class TranslationX2Animate extends BaseAnimate {
                                     (textLength + 2) * distance);
                     movexArray.set(i, Math.min(temp, maxtemp));
                 }
-                canvas.drawText(DOT + "", 0, 1,
+                canvas.drawText(String.valueOf(DOT), 0, 1,
                         movexArray.get(i) + (i + 1) * distance, startY, mPaint);
             }
         }

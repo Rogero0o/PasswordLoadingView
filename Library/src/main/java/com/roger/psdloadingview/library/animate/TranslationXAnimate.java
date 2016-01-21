@@ -10,7 +10,7 @@ public class TranslationXAnimate extends BaseAnimate {
         super.onDraw(canvas);
         if (!isStop) {
             for (int i = 0; i < textLength; i++) {
-                canvas.drawText(DOT + "", 0, 1, progress *
+                canvas.drawText(String.valueOf(DOT), 0, 1, progress *
                         (mPsdLoadingView.getWidth() -
                                 (textLength + 2) * distance) +
                         (i + 1) * distance, startY, mPaint);
