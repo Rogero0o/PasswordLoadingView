@@ -135,7 +135,8 @@ public class EatAnimate extends BaseAnimate {
                 for (int i = 0; i < textLength; i++) {
                     float moveX = (i + 0.5f) * distance;
                     if (moveX < centerX) {
-                        canvas.drawText(DOT + "", 0, 1, moveX, startY, mPaint);
+                        canvas.drawText(String.valueOf(DOT), 0, 1, moveX,
+                                startY, mPaint);
                     }
                 }
             }
@@ -147,7 +148,8 @@ public class EatAnimate extends BaseAnimate {
                 else {
                     moveX = centerX + radius;
                 }
-                canvas.drawText(DOT + "", 0, 1, moveX, startY, mPaint);
+                canvas.drawText(String.valueOf(DOT), 0, 1, moveX, startY,
+                        mPaint);
             }
         }
     }
