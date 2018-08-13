@@ -122,6 +122,6 @@ public class BaseAnimate implements IAnimate {
 
 
     protected boolean whenStop() {
-        return (isLoading == false && progress <= 0.001f);
+        return (!isLoading && progress <= 0.001f);
     }
 }
