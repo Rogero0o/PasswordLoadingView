@@ -1,11 +1,13 @@
 package com.roger.psdloadingview;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.roger.psdloadingview.library.PsdLoadingView;
 import com.roger.psdloadingview.library.animate.EatAnimate;
 import com.roger.psdloadingview.library.animate.IAnimate;
