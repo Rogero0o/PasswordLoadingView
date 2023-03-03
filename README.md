@@ -5,7 +5,7 @@ Provide an animation when finished the password<br>
 
 ## Looks like
 
-![](https://github.com/Rogero0o/PasswordLoadingView/raw/master/Demo/demo.gif)
+![Uploading demo.gif…]()
 
 ##  Usage
 
